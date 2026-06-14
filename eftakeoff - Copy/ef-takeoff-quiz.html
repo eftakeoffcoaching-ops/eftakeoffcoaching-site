@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EF TakeOff — How Does Your Brain Work?</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fafaf8;color:#1a1a18;min-height:100vh;padding:1.5rem 1rem 3rem}
+  .wrap{max-width:620px;margin:0 auto}
+  .lang-row{display:flex;justify-content:flex-end;gap:6px;margin-bottom:1rem}
+  .lb{padding:5px 14px;border:1px solid #ccc;border-radius:100px;background:transparent;color:#666;font-size:13px;cursor:pointer;font-family:inherit}
+  .lb.on{background:#7F77DD;border-color:#7F77DD;color:#fff}
+  .brand{font-size:11px;color:#888;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
+  .ti{font-size:22px;font-weight:600;color:#111;margin-bottom:2px}
+  .ti2{font-size:14px;color:#666;margin-bottom:.875rem}
+  .sub{font-size:14px;color:#555;line-height:1.6;margin-bottom:.2rem}
+  .sub2{font-size:12px;color:#888;line-height:1.6;margin-bottom:1.25rem}
+  .pb-bg{height:4px;background:#e8e8e4;border-radius:2px;margin-bottom:1.25rem}
+  .pb-f{height:4px;background:#7F77DD;border-radius:2px;transition:width .35s}
+  .qctr{font-size:12px;color:#999;margin-bottom:6px}
+  .dtag{display:inline-block;font-size:11px;padding:3px 10px;border-radius:100px;background:#EEEDFE;color:#3C3489;margin-bottom:10px;font-weight:500}
+  .qen{font-size:16px;font-weight:500;color:#111;line-height:1.6;margin-bottom:5px}
+  .qzh{font-size:13px;color:#666;line-height:1.6;margin-bottom:1.1rem}
+  .sw{display:flex;flex-direction:column;gap:8px}
+  .so{display:flex;align-items:flex-start;gap:12px;padding:10px 14px;border:1px solid #e0e0da;border-radius:10px;cursor:pointer;background:#fff;transition:background .15s,border-color .15s}
+  .so:hover{background:#f5f4ff;border-color:#c5c2f0}
+  .so.sel{background:#EEEDFE;border-color:#AFA9EC}
+  .sd{width:18px;height:18px;border-radius:50%;border:1.5px solid #ccc;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center}
+  .so.sel .sd{border-color:#7F77DD;background:#7F77DD}
+  .so.sel .sd::after{content:'';width:6px;height:6px;background:#fff;border-radius:50%}
+  .olen{font-size:14px;color:#111;line-height:1.4}
+  .olzh{font-size:12px;color:#888;line-height:1.4;margin-top:1px}
+  .nr{display:flex;justify-content:space-between;margin-top:1.5rem}
+  .btn{padding:10px 22px;border:1px solid #ccc;border-radius:10px;background:#fff;color:#333;font-size:14px;cursor:pointer;font-family:inherit;transition:background .15s}
+  .btn:hover{background:#f0f0ee}
+  .btnp{background:#7F77DD;border-color:#7F77DD;color:#fff}
+  .btnp:hover{background:#534AB7;border-color:#534AB7}
+  .btn:disabled{opacity:.35;cursor:not-allowed}
+  .div{height:1px;background:#e8e8e4;margin:1.25rem 0}
+  .sl{font-size:11px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+  .rc{background:#fff;border:1px solid #e0e0da;border-radius:12px;padding:1rem 1.125rem;margin-bottom:10px}
+  .rch{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px;gap:8px}
+  .rcn{font-size:15px;font-weight:600;color:#111}
+  .rcn2{font-size:11px;color:#888;margin-top:1px}
+  .bdg{font-size:10px;padding:3px 10px;border-radius:100px;white-space:nowrap;flex-shrink:0;font-weight:500}
+  .bs{background:#E1F5EE;color:#085041}
+  .bc{background:#FAECE7;color:#712B13}
+  .rcd{font-size:13px;color:#555;line-height:1.6;margin-bottom:4px}
+  .rcd2{font-size:11px;color:#999;line-height:1.5;margin-bottom:10px}
+  .rct{font-size:13px;color:#3C3489;background:#EEEDFE;border-radius:8px;padding:8px 12px;line-height:1.5;margin-bottom:4px}
+  .rct2{font-size:11px;color:#534AB7;line-height:1.4}
+  .srow{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .snm{font-size:11px;color:#666;width:120px;flex-shrink:0;line-height:1.4}
+  .sbg{flex:1;height:6px;background:#e8e8e4;border-radius:3px}
+  .bars{height:6px;background:#1D9E75;border-radius:3px}
+  .barc{height:6px;background:#D85A30;border-radius:3px}
+  .barn{height:6px;background:#7F77DD;border-radius:3px}
+  .wcbox{background:#f4f4f0;border-radius:12px;padding:1rem;margin-top:1.5rem;display:flex;gap:.875rem;align-items:flex-start}
+  .wcqr{width:110px;height:110px;flex-shrink:0;background:#fff;border-radius:10px;border:1px solid #e0e0da;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .wcqr img{width:100%;height:100%;object-fit:contain}
+  .wct .t1{font-size:14px;font-weight:600;color:#111;margin-bottom:2px}
+  .wct .t2{font-size:11px;color:#888;margin-bottom:7px}
+  .wct .t3{font-size:13px;color:#555;line-height:1.5;margin-bottom:3px}
+  .wct .t4{font-size:11px;color:#999;line-height:1.4}
+  .wct .wid{font-size:13px;font-weight:600;color:#3C3489;margin-top:8px}
+  .hidden{display:none!important}
+  .ri-en{font-size:14px;color:#555;line-height:1.6;margin-bottom:4px}
+  .ri-zh{font-size:12px;color:#888;line-height:1.6;margin-bottom:1.25rem}
+  .mode-cards{display:flex;flex-direction:column;gap:12px;margin:1.5rem 0}
+  .mode-card{display:flex;align-items:flex-start;gap:16px;padding:18px 20px;border:2px solid #e0e0da;border-radius:14px;cursor:pointer;background:#fff;transition:border-color .15s,background .15s;text-align:left;width:100%;font-family:inherit}
+  .mode-card:hover{border-color:#c5c2f0;background:#f5f4ff}
+  .mode-card.sel{border-color:#7F77DD;background:#EEEDFE}
+  .mode-icon{font-size:28px;flex-shrink:0;margin-top:2px}
+  .mode-title{font-size:15px;font-weight:600;color:#111;margin-bottom:3px}
+  .mode-title-zh{font-size:12px;color:#888;margin-bottom:4px}
+  .mode-desc{font-size:13px;color:#555;line-height:1.5}
+  .mode-desc-zh{font-size:11px;color:#aaa;line-height:1.5;margin-top:2px}
+  @media print{
+    *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+    body{padding:.5rem;background:#fafaf8!important}
+    #mview,#qview{display:none!important}
+    #rview{display:block!important}
+    .no-print,.lang-row{display:none!important}
+    .rc{page-break-inside:avoid;break-inside:avoid;margin-bottom:8px}
+    .wcbox{page-break-inside:avoid;break-inside:avoid}
+    .srow{page-break-inside:avoid;break-inside:avoid}
+    .wrap{max-width:100%}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+ 
+<!-- MODE SELECTION VIEW -->
+<div id="mview">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.25rem">
+    <div class="brand">EF TakeOff Coaching</div>
+    <div class="lang-row">
+      <button class="lb on" onclick="setLang('both')">EN+中</button>
+      <button class="lb" onclick="setLang('en')">EN</button>
+      <button class="lb" onclick="setLang('zh')">中文</button>
+    </div>
+  </div>
+  <div class="ti">How does your brain work?</div>
+  <div class="ti2 zh">你的大脑是如何运转的？</div>
+  <div class="sub en">Before we start — who is this quiz for?</div>
+  <div class="sub2 zh">开始之前——这份问卷是为谁填写的？</div>
+  <div class="mode-cards">
+    <button class="mode-card" id="mc-self" onclick="selectMode('self')">
+      <div class="mode-icon">🧠</div>
+      <div>
+        <div class="mode-title en">I'm taking this for myself</div>
+        <div class="mode-title-zh zh">我为自己填写</div>
+        <div class="mode-desc en">Teen or adult — answer based on your own experience</div>
+        <div class="mode-desc-zh zh">青少年或成人——根据你自己的经历作答</div>
+      </div>
+    </button>
+    <button class="mode-card" id="mc-parent" onclick="selectMode('parent')">
+      <div class="mode-icon">&#x1F468;&#x200D;&#x1F469;&#x200D;&#x1F467;</div>
+      <div>
+        <div class="mode-title en">I'm a parent filling this in for my child</div>
+        <div class="mode-title-zh zh">我是家长，为我的孩子填写</div>
+        <div class="mode-desc en">Answer based on what you observe in your child's daily life</div>
+        <div class="mode-desc-zh zh">根据你在孩子日常生活中观察到的情况作答</div>
+      </div>
+    </button>
+  </div>
+  <div class="nr">
+    <div></div>
+    <button class="btn btnp" id="bstart" onclick="startQuiz()" disabled>Start 开始 →</button>
+  </div>
+</div>
+ 
+<!-- QUIZ VIEW -->
+<div id="qview" class="hidden">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.25rem">
+    <div class="brand">EF TakeOff Coaching</div>
+    <div class="lang-row">
+      <button class="lb on" onclick="setLang('both')">EN+中</button>
+      <button class="lb" onclick="setLang('en')">EN</button>
+      <button class="lb" onclick="setLang('zh')">中文</button>
+    </div>
+  </div>
+  <div class="pb-bg"><div class="pb-f" id="pb" style="width:0%"></div></div>
+  <div class="qctr" id="qctr"></div>
+  <div class="dtag" id="dtag"></div>
+  <div class="qen en" id="qen"></div>
+  <div class="qzh zh" id="qzh"></div>
+  <div class="sw" id="sw"></div>
+  <div class="nr">
+    <button class="btn" id="bbk" onclick="goBack()" disabled>← Back 返回</button>
+    <button class="btn btnp" id="bnx" onclick="goNext()" disabled>Next 下一题 →</button>
+  </div>
+</div>
+ 
+<!-- RESULTS VIEW -->
+<div id="rview" class="hidden">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.25rem">
+    <div class="brand">EF TakeOff Coaching</div>
+    <div class="lang-row">
+      <button class="lb on" onclick="setLang('both')">EN+中</button>
+      <button class="lb" onclick="setLang('en')">EN</button>
+      <button class="lb" onclick="setLang('zh')">中文</button>
+    </div>
+  </div>
+  <div class="ti" id="rtitle"></div>
+  <div class="ti2 zh" id="rtitle-zh"></div>
+  <div class="ri-en en" id="rien"></div>
+  <div class="ri-zh zh" id="rizh"></div>
+  <div class="sl">Top strengths · 优势领域 (yōushì lǐngyù)</div>
+  <div id="scards"></div>
+  <div class="div"></div>
+  <div class="sl">Growth edges · 成长空间 (chéngzhǎng kōngjiān)</div>
+  <div id="ccards"></div>
+  <div class="div"></div>
+  <div class="sl">All seven areas · 七个领域全览 (qī gè lǐngyù quǎnlǎn)</div>
+  <div id="allsc" style="margin-top:.875rem"></div>
+  <div class="wcbox">
+    <div class="wcqr">
+      <img src="QR-Code.png" alt="WeChat QR Code"
+        onerror="this.parentNode.innerHTML='<div style=\'text-align:center;padding:10px;font-size:11px;color:#888;line-height:1.5\'>Scan WeChat QR<br>扫码添加微信<br><br><strong style=\'color:#3C3489\'>CourtGum</strong></div>'">
+    </div>
+    <div class="wct">
+      <div class="t1 en" id="wc-t1"></div>
+      <div class="t2 zh" id="wc-t2"></div>
+      <div class="t3 en" id="wc-t3"></div>
+      <div class="t4 zh" id="wc-t4"></div>
+      <div class="wid">WeChat ID: CourtGum</div>
+    </div>
+  </div>
+  <div class="no-print" style="display:flex;justify-content:center;gap:10px;margin-top:1.5rem;flex-wrap:wrap">
+  <a href="https://eftakeoffcoachingcg.com" class="btn">← Back to website 返回网站</a>
+  <button class="btn" onclick="restart()">Take it again 重新开始</button>
+  <button class="btn btnp" id="btn-download" onclick="downloadPDF()">&#x2B07; Download results</button>
+</div>
+</div>
+ 
+</div>
+<script>
+var domains=[
+  {id:'ti',en:'Task Initiation',zh:'任务启动'},
+  {id:'wm',en:'Working Memory',zh:'工作记忆'},
+  {id:'er',en:'Emotional Regulation',zh:'情绪调节'},
+  {id:'tm',en:'Time Management',zh:'时间管理'},
+  {id:'po',en:'Planning & Organization',zh:'计划与组织'},
+  {id:'fs',en:'Flexibility',zh:'灵活性'},
+  {id:'ic',en:'Impulse Control',zh:'冲动控制'}
+];
+ 
+var QsSelf=[
+  {d:'ti',en:"When you have something important to do, how often do you find yourself doing almost anything else before actually starting it?",zh:"当你有重要的事情要做时，你是否经常在真正开始之前做其他任何事情？"},
+  {d:'ti',en:"You sit down to begin a task. How often does it take much longer than expected just to get going — even when you want to?",zh:"你坐下来准备开始任务时，即使你想做，开始行动是否往往比预期花更长时间？"},
+  {d:'wm',en:"You're in the middle of something and someone gives you information you'll need later. How often do you forget it before you can use it?",zh:"你正在做事时，有人给了你之后需要用到的信息，你经常在用到之前就忘了吗？"},
+  {d:'wm',en:"How often do you walk into a room and immediately forget why you went there — or lose your train of thought mid-sentence?",zh:"你是否经常走进房间就忘了自己为什么去，或者说话说到一半忘了要说什么？"},
+  {d:'er',en:"When something frustrating or disappointing happens, how quickly are you able to return to feeling like yourself?",zh:"当发生令人沮丧或失望的事情时，你多快能恢复到正常状态？",custom:true},
+  {d:'er',en:"How often does a stressful event early in your day continue to affect your mood or focus for hours afterward?",zh:"一天开始时的压力事件，是否经常在之后数小时内持续影响你的情绪或专注力？"},
+  {d:'tm',en:"How often are you surprised by how much time has passed — either it flew by, or you thought more time had passed than actually did?",zh:"你是否经常对时间流逝感到惊讶——要么时间飞逝，要么以为过了很久其实没有？"},
+  {d:'tm',en:"When you estimate how long a task will take, how often does it take significantly longer than you planned?",zh:"当你估计一项任务需要多长时间时，实际花费的时间是否往往比你计划的长得多？"},
+  {d:'po',en:"How often do you find yourself without a clear plan for your week — or unable to follow through on one you made?",zh:"你是否经常发现自己没有清晰的周计划，或者制定了计划却无法执行？"},
+  {d:'po',en:"When you have multiple things to manage at once, how often do you feel disorganized or like things are slipping through the cracks?",zh:"当你同时需要处理多件事情时，你是否经常感到混乱或觉得事情在脱轨？"},
+  {d:'fs',en:"When plans change unexpectedly, how often do you feel stressed or thrown off by the shift?",zh:"当计划意外改变时，你是否经常感到压力或不知所措？"},
+  {d:'fs',en:"How often do you struggle to shift smoothly from one task or topic to another without needing extra time to adjust?",zh:"你是否经常难以顺畅地从一项任务切换到另一项，需要额外的时间来调整？"},
+  {d:'ic',en:"When you have an impulse to say or do something in the moment, how often do you act without pausing to think first?",zh:"当你有冲动想说或做某件事时，你是否经常不假思索就直接行动？"},
+  {d:'ic',en:"How often do you make impulsive decisions — buying something, sending a message, agreeing to something — and later wish you'd waited?",zh:"你是否经常做出冲动的决定，之后又希望自己当时等一等？"}
+];
+ 
+var QsParent=[
+  {d:'ti',en:"When your child has something important to do, how often do they end up doing almost anything else before actually starting it?",zh:"当你的孩子有重要的事情要做时，他们是否经常在真正开始之前做其他任何事情？"},
+  {d:'ti',en:"When your child sits down to begin a task, how often does it take much longer than expected just to get going — even when they want to?",zh:"你的孩子坐下来准备开始任务时，即使他们想做，开始行动是否往往比预期花更长时间？"},
+  {d:'wm',en:"When your child is given information they'll need later, how often do they forget it before they can use it?",zh:"当你的孩子获得之后需要用到的信息时，他们经常在用到之前就忘了吗？"},
+  {d:'wm',en:"How often does your child walk into a room and immediately forget why they went there — or lose their train of thought mid-sentence?",zh:"你的孩子是否经常走进房间就忘了自己为什么去，或者说话说到一半忘了要说什么？"},
+  {d:'er',en:"When something frustrating or disappointing happens, how quickly is your child able to return to feeling like themselves?",zh:"当发生令你的孩子沮丧或失望的事情时，他们多快能恢复到正常状态？",custom:true},
+  {d:'er',en:"How often does a stressful event early in the day continue to affect your child's mood or focus for hours afterward?",zh:"一天开始时的压力事件，是否经常在之后数小时内持续影响你的孩子的情绪或专注力？"},
+  {d:'tm',en:"How often is your child surprised by how much time has passed — either it flew by, or they thought more time had passed than actually did?",zh:"你的孩子是否经常对时间流逝感到惊讶——要么时间飞逝，要么以为过了很久其实没有？"},
+  {d:'tm',en:"When your child estimates how long a task will take, how often does it take significantly longer than they planned?",zh:"当你的孩子估计一项任务需要多长时间时，实际花费的时间是否往往比他们计划的长得多？"},
+  {d:'po',en:"How often does your child seem to have no clear plan — or struggle to follow through on one they made?",zh:"你的孩子是否经常看起来没有清晰的计划，或者制定了计划却无法执行？"},
+  {d:'po',en:"When your child has multiple things to manage at once, how often do they seem disorganized or like things are slipping through the cracks?",zh:"当你的孩子同时需要处理多件事情时，他们是否经常显得混乱或觉得事情在脱轨？"},
+  {d:'fs',en:"When plans change unexpectedly, how often does your child seem stressed or thrown off by the shift?",zh:"当计划意外改变时，你的孩子是否经常显得压力大或不知所措？"},
+  {d:'fs',en:"How often does your child struggle to shift smoothly from one task or topic to another without needing extra time to adjust?",zh:"你的孩子是否经常难以顺畅地从一项任务切换到另一项，需要额外的时间来调整？"},
+  {d:'ic',en:"When your child has an impulse to say or do something in the moment, how often do they act without pausing to think first?",zh:"当你的孩子有冲动想说或做某件事时，他们是否经常不假思索就直接行动？"},
+  {d:'ic',en:"How often does your child make impulsive decisions — and later seem to wish they had waited?",zh:"你的孩子是否经常做出冲动的决定，之后又似乎后悔当时没有等一等？"}
+];
+ 
+var stdOpts=[
+  {en:'Almost never',zh:'几乎从不',v:5},
+  {en:'Rarely',zh:'很少',v:4},
+  {en:'Sometimes',zh:'有时',v:3},
+  {en:'Often',zh:'经常',v:2},
+  {en:'Almost always',zh:'几乎总是',v:1}
+];
+var erOpts=[
+  {en:'A few minutes',zh:'几分钟内',v:5},
+  {en:'About an hour',zh:'大约一小时',v:4},
+  {en:'Half a day',zh:'半天左右',v:3},
+  {en:'A full day or more',zh:'整整一天或更长',v:2},
+  {en:'Several days',zh:'好几天',v:1}
+];
+var dInfo={
+  ti:{
+    sEN:"Strong at getting started. Even when a task feels daunting, taking the first step comes without too much internal resistance.",
+    sZH:"善于开始行动——即使任务感觉令人望而生畏，也能迈出第一步。",
+    stEN:"A real asset when helping others get unstuck — this brain knows how to begin.",
+    stZH:"在帮助他人克服障碍时，可以利用这一优势。",
+    cEN:"Getting started is genuinely hard for this brain — not a motivation problem, not a character flaw. This is one of the most common EF struggles.",
+    cZH:"开始行动对大脑来说确实困难——这不是动力问题，也不是性格缺陷，而是大脑的执行功能挑战。",
+    ctEN:"Try the '2-minute rule': commit to just two minutes on the task. The brain often needs a running start to engage.",
+    ctZH:'试试"2分钟规则"：只承诺做两分钟。大脑往往需要一个起跑来进入状态。'
+  },
+  wm:{
+    sEN:"Good at holding information in mind while working — juggling details and instructions comes relatively naturally.",
+    sZH:"在工作时能很好地记住信息——同时处理多个细节相对自然。",
+    stEN:"Use this strength in complex projects where tracking multiple threads matters.",
+    stZH:"在需要追踪多个环节的复杂项目中发挥这一优势。",
+    cEN:"The brain has a hard time holding information while also doing something. It can feel like forgetfulness, but it's a working memory load issue — not a memory problem.",
+    cZH:"大脑难以在做事的同时记住信息——这感觉像健忘，但实际上是工作记忆负荷问题，而不是记忆力问题。",
+    ctEN:"Externalize everything. Write it down immediately. The brain isn't broken — it just needs a backup system.",
+    ctZH:"将一切外化。立即写下来。大脑没有问题——只是需要一个备份系统。"
+  },
+  er:{
+    sEN:"Emotions are regulated well. It's possible to feel something intensely and still return to baseline without it derailing the day.",
+    sZH:"善于调节情绪——可以强烈地感受情绪，但仍能回到平衡状态，不会让情绪毁掉一天。",
+    stEN:"This emotional resilience is a real asset, especially under pressure.",
+    stZH:"这种情绪韧性是真正的优势，尤其是在压力下。",
+    cEN:"Emotional experiences tend to linger. Once something gets under the skin, it takes real effort to return to baseline — and that's exhausting.",
+    cZH:"情绪体验往往会持续——一旦某件事触动了神经，回到平衡状态需要真正的努力，这会让人感到疲惫。",
+    ctEN:"Name the feeling out loud or write it down. Labeling an emotion activates the part of the brain that helps regulate it.",
+    ctZH:"大声说出或写下感受。给情绪命名能激活大脑中帮助调节情绪的部分。"
+  },
+  tm:{
+    sEN:"A good internal sense of time — able to estimate durations, notice time passing, and plan accordingly.",
+    sZH:"有良好的时间感——能估计时长，注意到时间的流逝，并据此做出计划。",
+    stEN:"This is rarer than people think. Use it to help plan realistically.",
+    stZH:"这比人们想象的更罕见。利用它帮助进行现实规划。",
+    cEN:"Time feels slippery — hours disappear, or there's a chronic tendency to underestimate how long things take. This is often called 'time blindness,' and it's a real neurological pattern.",
+    cZH:'时间感觉很滑溜——几个小时消失了，或者长期低估事情所需的时间。这通常被称为"时间盲"，是真实的神经系统模式。',
+    ctEN:"Make time visible: use analog clocks, timers, and visible time-blocking. Out of sight really is out of mind for time.",
+    ctZH:"让时间可见：使用模拟时钟、计时器和可见的日历时间分块。眼不见真的就心不想。"
+  },
+  po:{
+    sEN:"Able to organize thinking, tasks, and space in ways that support follow-through.",
+    sZH:"能够组织思维、任务和空间，以支持行动的落实。",
+    stEN:"Structure comes naturally — but watch out for over-planning as a way to feel productive without actually acting.",
+    stZH:"结构对你来说是自然的——但注意是否会过度计划，以此感觉在做事，实际上却没有行动。",
+    cEN:"Planning and organizing feel effortful and don't come naturally, which can make complex projects feel overwhelming before they even start.",
+    cZH:"计划和组织感觉费力且不自然，这可能让复杂项目在开始之前就令人感到不知所措。",
+    ctEN:"Break it into one next step — not a full plan. 'What's the one thing to do in the next 20 minutes?' is often enough to get moving.",
+    ctZH:'把它分解成下一步——而不是完整计划。"接下来20分钟需要做什么?"通常就足以让人开始行动了。'
+  },
+  fs:{
+    sEN:"Adapts well to change. When plans shift, it's possible to pivot without too much friction or mental load.",
+    sZH:"能很好地适应变化——当计划改变时，可以灵活转变而不会有太多阻力或心理负担。",
+    stEN:"Flexibility under pressure is a significant strength in work and relationships.",
+    stZH:"在压力下的灵活性是工作和人际关系中的重要优势。",
+    cEN:"Shifting gears — between tasks, expectations, or unexpected changes — takes real mental energy. It's not stubbornness; it's cognitive load.",
+    cZH:"切换——任务之间、期望之间、或意外变化——需要真正的心理能量。这不是固执；这是认知负荷。",
+    ctEN:"Allow a small buffer between tasks to mentally 'close out.' Even 2 minutes of transition time can reduce friction significantly.",
+    ctZH:"在任务之间给一点缓冲时间，在心理上关闭上一个任务。即使是2分钟的过渡也能大大减少阻力。"
+  },
+  ic:{
+    sEN:"Generally able to pause before acting — which helps in relationships, decision-making, and communication.",
+    sZH:"通常能够在行动之前暂停——这在人际关系、决策和沟通中很有帮助。",
+    stEN:"This thoughtfulness is an asset. Just make sure it doesn't tip into over-analysis or avoidance.",
+    stZH:"这种深思熟虑是一种优势。只要确保它不会变成过度分析或回避。",
+    cEN:"Acting before thinking — in words, decisions, or reactions — tends to happen faster than awareness can catch it. It's not a moral failing; it's a brain wiring pattern.",
+    cZH:"在想之前行动——在言语、决策或反应上——往往比意识能捕捉到的更快发生。这不是道德问题；这是大脑的连接模式。",
+    ctEN:"Build a pause habit: before responding to something that triggers a reaction, wait 10 minutes. Simple, and it works.",
+    ctZH:"建立暂停习惯：在回应触发反应的事情之前，等待10分钟。简单，而且有效。"
+  }
+};
+ 
+var cur=0, ans={}, lang='both', mode=null, Qs=QsSelf;
+ 
+function selectMode(m){
+  mode=m;
+  Qs=m==='parent'?QsParent:QsSelf;
+  document.getElementById('mc-self').classList.toggle('sel',m==='self');
+  document.getElementById('mc-parent').classList.toggle('sel',m==='parent');
+  document.getElementById('bstart').disabled=false;
+}
+ 
+function startQuiz(){
+  if(!mode)return;
+  document.getElementById('mview').classList.add('hidden');
+  document.getElementById('qview').classList.remove('hidden');
+  cur=0;ans={};
+  renderQ();
+}
+ 
+function setLang(l){
+  lang=l;
+  var activeView;
+  if(!document.getElementById('mview').classList.contains('hidden')){
+    activeView=document.getElementById('mview');
+  } else if(!document.getElementById('rview').classList.contains('hidden')){
+    activeView=document.getElementById('rview');
+  } else {
+    activeView=document.getElementById('qview');
+  }
+  activeView.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});
+  var idx={'both':0,'en':1,'zh':2}[l];
+  activeView.querySelectorAll('.lb')[idx].classList.add('on');
+  document.querySelectorAll('.zh').forEach(function(el){el.style.display=(l==='en')?'none':'';});
+  document.querySelectorAll('.en').forEach(function(el){el.style.display=(l==='zh')?'none':'';});
+}
+ 
+function renderQ(){
+  var q=Qs[cur];
+  var d=domains.find(function(x){return x.id===q.d;});
+  document.getElementById('qctr').textContent='Question '+(cur+1)+' of '+Qs.length+' · 第'+(cur+1)+'题，共'+Qs.length+'题';
+  document.getElementById('dtag').textContent=d.en+' · '+d.zh;
+  document.getElementById('qen').textContent=q.en;
+  document.getElementById('qzh').textContent=q.zh;
+  document.getElementById('pb').style.width=Math.round((cur/Qs.length)*100)+'%';
+  var opts=q.custom?erOpts:stdOpts;
+  var sw=document.getElementById('sw');
+  sw.innerHTML='';
+  opts.forEach(function(o){
+    var div=document.createElement('div');
+    div.className='so'+(ans[cur]===o.v?' sel':'');
+    div.innerHTML='<div class="sd"></div><div><div class="olen en">'+o.en+'</div><div class="olzh zh">'+o.zh+'</div></div>';
+    div.onclick=function(){selectAns(o.v,opts);};
+    sw.appendChild(div);
+  });
+  document.getElementById('bbk').disabled=(cur===0);
+  document.getElementById('bnx').disabled=(ans[cur]===undefined);
+  document.getElementById('bnx').textContent=cur===Qs.length-1?'See results 查看结果 →':'Next 下一题 →';
+  setLang(lang);
+}
+ 
+function selectAns(v,opts){
+  ans[cur]=v;
+  document.querySelectorAll('#sw .so').forEach(function(el){el.classList.remove('sel');});
+  var idx=opts.findIndex(function(o){return o.v===v;});
+  document.querySelectorAll('#sw .so')[idx].classList.add('sel');
+  document.getElementById('bnx').disabled=false;
+}
+ 
+function goNext(){
+  if(ans[cur]===undefined)return;
+  if(cur<Qs.length-1){cur++;renderQ();}
+  else showResults();
+}
+ 
+function goBack(){
+  if(cur>0){cur--;renderQ();}
+}
+ 
+function showResults(){
+  var scores={};
+  domains.forEach(function(d){scores[d.id]=[];});
+  Qs.forEach(function(q,i){if(ans[i]!==undefined)scores[q.d].push(ans[i]);});
+  var avg={};
+  domains.forEach(function(d){
+    var a=scores[d.id];
+    avg[d.id]=a.length?a.reduce(function(s,v){return s+v;},0)/a.length:3;
+  });
+  var sorted=domains.slice().sort(function(a,b){
+  var diff=avg[b.id]-avg[a.id];
+  if(diff!==0)return diff;
+  return domains.indexOf(a)-domains.indexOf(b);
+});
+  var strs=sorted.slice(0,2);
+  var genuineChals=sorted.filter(function(d){return avg[d.id]<3.5;});
+var chals=genuineChals.length>=2?genuineChals.slice(-2).reverse():genuineChals.length===1?[genuineChals[0]]:[sorted[sorted.length-1]];
+  var isParent=mode==='parent';
+ 
+  document.getElementById('rtitle').textContent=isParent?"Your child's EF snapshot":"Your EF snapshot";
+  document.getElementById('rtitle-zh').textContent=isParent?'你的孩子的执行功能概况':'你的执行功能概况 (ni de zhixing gongneng gaikuang)';
+  document.getElementById('rien').textContent=isParent
+    ?'Based on your answers, your child shows real strength in '+strs[0].en.toLowerCase()+'. Their biggest growth edge is '+chals[0].en.toLowerCase()+' — and that\'s exactly where coaching can help.'
+    :'Based on your answers, you show real strength in '+strs[0].en.toLowerCase()+'. Your biggest growth edge is '+chals[0].en.toLowerCase()+' — and that\'s exactly where coaching can help.';
+  document.getElementById('rizh').textContent=isParent
+    ?'根据你的答案，你的孩子在'+strs[0].zh.split('(')[0].trim()+'方面表现出真正的优势。他们最大的成长空间在'+chals[0].zh.split('(')[0].trim()+'——这正是coaching能帮到你们的地方。'
+    :'根据你的答案，你在'+strs[0].zh.split('(')[0].trim()+'方面表现出真正的优势。你最大的成长空间在'+chals[0].zh.split('(')[0].trim()+'——这正是coaching能帮到你的地方。';
+  document.getElementById('wc-t1').textContent=isParent?'Want a full report for your child?':'Want your full personalized report?';
+  document.getElementById('wc-t2').textContent=isParent?'想要你孩子的个性化完整报告？':'想要你的个性化完整报告';
+  document.getElementById('wc-t3').textContent=isParent?'Scan to add me on WeChat — I\'ll send a deeper breakdown with strategies tailored to your child\'s brain. Free.':'Scan to add me on WeChat — I\'ll send you a deeper breakdown with strategies tailored to your brain. Free.';
+  document.getElementById('wc-t4').textContent=isParent?'扫码添加微信，我会免费发给你针对你孩子大脑的个性化策略报告':'扫码添加微信，我会免费发给你针对你大脑的个性化策略报告';
+ 
+  var sc=document.getElementById('scards');
+  sc.innerHTML='';
+  strs.forEach(function(d){
+    var info=dInfo[d.id];
+    sc.innerHTML+='<div class="rc"><div class="rch"><div><div class="rcn en">'+d.en+'</div><div class="rcn2 zh">'+d.zh+'</div></div><span class="bdg bs">Strength 优势</span></div><div class="rcd en">'+info.sEN+'</div><div class="rcd2 zh">'+info.sZH+'</div><div class="rct en">'+info.stEN+'</div><div class="rct2 zh">'+info.stZH+'</div></div>';
+  });
+  var cc=document.getElementById('ccards');
+  cc.innerHTML='';
+  chals.forEach(function(d){
+    var info=dInfo[d.id];
+    cc.innerHTML+='<div class="rc"><div class="rch"><div><div class="rcn en">'+d.en+'</div><div class="rcn2 zh">'+d.zh+'</div></div><span class="bdg bc">Growth edge 成长空间</span></div><div class="rcd en">'+info.cEN+'</div><div class="rcd2 zh">'+info.cZH+'</div><div class="rct en">'+info.ctEN+'</div><div class="rct2 zh">'+info.ctZH+'</div></div>';
+  });
+  var allsc=document.getElementById('allsc');
+  allsc.innerHTML='';
+  domains.forEach(function(d){
+    var pct=Math.round((avg[d.id]/5)*100);
+    var isS=strs.some(function(s){return s.id===d.id;});
+    var isC=chals.some(function(c){return c.id===d.id;});
+    var cls=isS?'bars':isC?'barc':'barn';
+    allsc.innerHTML+='<div class="srow"><div class="snm">'+d.en+'<br><span style="font-size:10px;color:#aaa">'+d.zh+'</span></div><div class="sbg"><div class="'+cls+'" style="width:'+pct+'%"></div></div><div style="font-size:11px;color:#aaa;width:32px;text-align:right">'+pct+'%</div></div>';
+  });
+  document.getElementById('qview').classList.add('hidden');
+  document.getElementById('rview').classList.remove('hidden');
+  setLang(lang);
+  window.scrollTo(0,0);
+}
+ 
+function restart(){
+  cur=0;ans={};mode=null;Qs=QsSelf;
+  document.getElementById('rview').classList.add('hidden');
+  document.getElementById('qview').classList.add('hidden');
+  document.getElementById('mview').classList.remove('hidden');
+  document.getElementById('mc-self').classList.remove('sel');
+  document.getElementById('mc-parent').classList.remove('sel');
+  document.getElementById('bstart').disabled=true;
+  setLang(lang);
+  window.scrollTo(0,0);
+}
+ 
+function downloadPDF(){
+  var isWeChat = /MicroMessenger/i.test(navigator.userAgent);
+  if(isWeChat){
+    alert('To save your results:\n\n1. Tap the "..." menu in the top right\n2. Select "Open in browser"\n3. Then tap "Download results"\n\nOr take a screenshot now!\n\n保存结果：点击右上角"..."，选择"在浏览器中打开"，再点击下载。或直接截图保存。');
+    return;
+  }
+  var noprint=document.querySelector('.no-print');
+  var langRow=document.querySelector('#rview .lang-row');
+  if(noprint)noprint.style.display='none';
+  if(langRow)langRow.style.display='none';
+  window.print();
+  setTimeout(function(){
+    if(noprint)noprint.style.display='';
+    if(langRow)langRow.style.display='';
+  },1000);
+}
+ 
+setLang('both');
+if(/MicroMessenger/i.test(navigator.userAgent)){
+  var db = document.getElementById('btn-download');
+  if(db) db.textContent = '📸 Save results';
+}
+</script>
+</body>
+</html>
