@@ -1,4 +1,8 @@
-:root{--blue:#3B5DB0;--teal:#3B7DA8;--teal-dark:#2A4F7A;--teal-light:#5B9FCC;--green:#6DB56A;--green-light:#8ACC7A;--cream:#F7F4EF;--warm-white:#FDFBF8;--charcoal:#1A2336;--mid:#4A5562;--light-border:rgba(59,109,138,0.12);}
+:root{--blue:#3B5DB0;--teal:#3B7DA8;--teal-dark:#2A4F7A;--teal-light:#5B9FCC;--green:#6DB56A;--green-light:#8ACC7A;--cream:#F7F4EF;--warm-white:#FDFBF8;--charcoal:#1A2336;--mid:#4A5562;--light-border:rgba(59,109,138,0.12);--plum:#7E6A93;--plum-dark:#5E4F70;--plum-light:#A293B5;--plum-border:rgba(126,106,147,0.14);}
+
+/* COUNSELING VARIANT — re-points the teal accent to plum within scope */
+body.counseling-page{--teal:var(--plum);--teal-dark:var(--plum-dark);--teal-light:var(--plum-light);--light-border:var(--plum-border);}
+#panel-counseling{--teal:var(--plum);--teal-dark:var(--plum-dark);--teal-light:var(--plum-light);--light-border:var(--plum-border);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;background:var(--warm-white);color:var(--charcoal);line-height:1.6;overflow-x:hidden;}
@@ -139,6 +143,7 @@ h2 em{font-style:italic;color:var(--teal);font-weight:600;}
 .pricing-tabs{display:flex;gap:0.5rem;margin:2.5rem 0;background:white;border:1px solid var(--light-border);border-radius:50px;padding:0.35rem;width:fit-content;}
 .pricing-tab{padding:0.6rem 1.5rem;border-radius:50px;font-size:0.85rem;font-weight:500;cursor:pointer;border:none;background:none;color:var(--mid);font-family:'DM Sans',sans-serif;transition:all 0.2s;}
 .pricing-tab.active{background:var(--teal);color:white;}
+.pricing-tab.tab-counseling.active{background:var(--plum);color:white;}
 .pricing-tab:hover:not(.active){color:var(--teal);}
 .pricing-panel{display:none;}
 .pricing-panel.active{display:block;}
@@ -382,11 +387,24 @@ footer{background:var(--charcoal);padding:2.5rem 5%;display:flex;justify-content
 .how-cta{text-align:center;margin-top:1rem;}
 .how-cta-note{margin-top:0.7rem;font-size:0.82rem;color:var(--mid);opacity:0.7;}
 
+/* COUNSELING PAGE LAYOUTS */
+.counsel-card-accent{--teal:var(--plum);--teal-dark:var(--plum-dark);--teal-light:var(--plum-light);--light-border:var(--plum-border);}
+.counsel-card-accent .service-icon{background:rgba(126,106,147,0.1);}
+.counsel-questions{font-size:1.15rem;color:var(--charcoal);line-height:2;font-weight:400;margin:1.5rem 0 2.5rem;max-width:640px;}
+.counsel-questions p{margin-bottom:0.4rem;}
+.counsel-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem;}
+.counsel-how-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin:3rem 0;}
+
 /* RESPONSIVE */
+@media(max-width:1300px){
+  .nav-logo img{height:56px;}
+  .nav-links{gap:0.1rem;}
+  .nav-links a{font-size:0.74rem;padding:0.38rem 0.6rem;}
+}
 @media(max-width:900px){
   #hero{grid-template-columns:1fr;padding-top:7rem;}
   .hero-visual{display:none;}
-  .who-grid,.services-grid,.testimonials-grid,.resources-grid,.ef-skills-grid,.ef-top-layout{grid-template-columns:1fr;}
+  .who-grid,.services-grid,.testimonials-grid,.resources-grid,.ef-skills-grid,.ef-top-layout,.counsel-grid,.counsel-how-grid{grid-template-columns:1fr;}
   .about-grid{grid-template-columns:1fr;gap:2.5rem;}
   .schools-layout,.pricing-grid,.blog-layout,.contact-layout{grid-template-columns:1fr;gap:2.5rem;}
   .form-row{grid-template-columns:1fr;}
