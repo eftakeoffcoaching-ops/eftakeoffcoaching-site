@@ -1,0 +1,16 @@
+{
+  "name": "Parent-Teacher Conference Companion · EF TakeOff Coaching",
+  "short_name": "Conference Prep",
+  "description": "Prepare for a parent-teacher conference: organize what you're noticing, recognize your child's strengths, and leave with a clear plan.",
+  "lang": "en",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F7F4EF",
+  "theme_color": "#1B2A4A",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
