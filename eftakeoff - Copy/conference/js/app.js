@@ -245,6 +245,11 @@
           <ol class="steps" role="list">${steps}</ol>
           <p class="hint">${esc(L.privacy)}</p>
         </details>
+        ${isStandalone() ? '' : `<details class="how card" id="phone-help">
+          <summary><h2 class="h3">${esc(C.ui.phoneTitle)}</h2></summary>
+          <p class="hint">${esc(C.ui.phoneIntro)}</p>
+          <ul class="phone-steps" role="list">${C.ui.phoneSteps.map((s) => `<li><strong>${esc(s.title)}</strong><span>${esc(s.body)}</span></li>`).join('')}</ul>
+        </details>`}
         <p class="import-line">${esc(L.importPrompt)}
           <button type="button" class="btn-link" data-act="import">${esc(L.importButton)}</button></p>
         ${importInput()}
@@ -1181,17 +1186,54 @@
     installEvent = e;
     installBtn.hidden = false;
   });
+  let installed = false;
   installBtn.addEventListener('click', async () => {
     if (!installEvent) return;
     installEvent.prompt();
-    await installEvent.userChoice;
+    const choice = await installEvent.userChoice;
     installEvent = null;
     installBtn.hidden = true;
+    // In mainland China (or without Google Play services) Chrome's install can
+    // fail quietly. If it hasn't finished after a while, point to the shortcut steps.
+    if (choice && choice.outcome === 'accepted') {
+      setTimeout(() => { if (!installed) showToast(C.ui.installHelp, openPhoneHelp); }, 20000);
+    }
   });
   window.addEventListener('appinstalled', () => {
+    installed = true;
     installBtn.hidden = true;
-    statusEl.textContent = C.ui.installDone;
+    showToast(C.ui.installDone);
   });
+
+  function openPhoneHelp() {
+    const open = () => {
+      const d = document.getElementById('phone-help');
+      if (!d) return;
+      d.open = true;
+      d.scrollIntoView({ block: 'start' });
+      d.querySelector('summary').focus({ preventScroll: true });
+    };
+    if (currentRoute === '') open();
+    else { location.hash = '#/'; setTimeout(open, 50); }
+  }
+
+  // Small message at the bottom of the screen (visible on phones, unlike the header status).
+  function showToast(text, onClick) {
+    let t = document.getElementById('toast');
+    if (!t) {
+      t = document.createElement('div');
+      t.id = 'toast';
+      t.className = 'toast';
+      t.setAttribute('role', 'status');
+      document.body.appendChild(t);
+    }
+    t.innerHTML = `<span>${esc(text)}</span>${onClick ? `<button type="button" class="btn btn-gold btn-sm">${esc(C.ui.showMe)}</button>` : ''}<button type="button" class="toast-close" aria-label="${esc(C.ui.close)}">×</button>`;
+    t.hidden = false;
+    const btn = t.querySelector('.btn');
+    if (btn) btn.addEventListener('click', () => { t.hidden = true; onClick(); });
+    t.querySelector('.toast-close').addEventListener('click', () => { t.hidden = true; });
+    if (!onClick) setTimeout(() => { t.hidden = true; }, 8000);
+  }
   // Service workers only run on a real web address (http/https), not when opened from disk.
   if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
     window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });

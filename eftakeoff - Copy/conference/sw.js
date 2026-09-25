@@ -1,6 +1,6 @@
 // Service worker: makes the app installable and usable offline.
 // After publishing changes, bump VERSION so returning parents get the new files.
-const VERSION = 'v2.2';
+const VERSION = 'v2.3';
 const CACHE = `ptcc-${VERSION}`;
 
 const FILES = [
