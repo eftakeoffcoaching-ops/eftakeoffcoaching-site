@@ -424,3 +424,55 @@ footer{background:var(--charcoal);padding:2.5rem 5%;display:flex;justify-content
   .how-grid{grid-template-columns:1fr;}
 
 }
+
+/* ── OCT 2026 REFRESH ─────────────────────────────── */
+.path-meta{font-size:0.82rem;color:var(--mid);margin:-0.6rem 0 1.4rem;font-weight:400;}
+.path-meta a{color:var(--teal);font-weight:500;text-decoration:none;}
+.path-meta a:hover{text-decoration:underline;}
+.recognition-item a{color:inherit;text-decoration:none;}
+.recognition-item a:hover strong{text-decoration:underline;}
+#two-paths,#contact,#pricing,#service-tabs{scroll-margin-top:100px;}
+.faq-answer.open{max-height:900px;}
+.faq-group-label{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);font-weight:600;padding:1.4rem 2rem 0.4rem;background:var(--cream);}
+.faq-answer p + p{margin-top:0.8rem;}
+.faq-answer a{color:var(--teal);}
+
+/* Speaking page */
+#speaking{background:var(--cream);}
+.speaking-audiences{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem;}
+.speaking-audience{border:1px solid var(--light-border);border-radius:16px;padding:1.6rem;background:white;}
+.speaking-audience h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:700;color:var(--teal-dark);margin-bottom:0.5rem;}
+.speaking-audience p{font-size:0.85rem;color:var(--mid);line-height:1.7;font-weight:300;}
+.format-list{display:flex;flex-direction:column;}
+.format-row{padding:0.9rem 0;border-bottom:1px solid var(--light-border);}
+.format-row:last-of-type{border:none;}
+.format-name{font-size:0.92rem;font-weight:600;color:var(--charcoal);}
+.format-sub{font-size:0.8rem;color:var(--mid);font-weight:300;margin-top:0.15rem;}
+
+/* Pricing overview: counseling vs coaching at a glance */
+.pricing-overview{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:3rem;}
+.overview-card{border-radius:20px;padding:2rem 2.2rem;border:1px solid var(--light-border);background:white;display:flex;flex-direction:column;gap:0.6rem;}
+.overview-card.is-counseling{border-color:var(--plum-border);background:linear-gradient(135deg,rgba(126,106,147,0.07),rgba(126,106,147,0.02));}
+.overview-label{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--teal);}
+.overview-card.is-counseling .overview-label{color:var(--plum);}
+.overview-card h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.35rem;font-weight:700;color:var(--charcoal);margin:0;}
+.overview-price{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:700;color:var(--teal-dark);}
+.overview-card.is-counseling .overview-price{color:var(--plum-dark);}
+.overview-price small{font-size:0.85rem;font-weight:400;color:var(--mid);}
+.overview-card p{font-size:0.88rem;color:var(--mid);line-height:1.7;font-weight:300;}
+.overview-link{margin-top:auto;font-size:0.85rem;font-weight:600;color:var(--teal);background:none;border:none;padding:0;cursor:pointer;text-align:left;font-family:inherit;}
+.overview-card.is-counseling .overview-link{color:var(--plum);}
+.pricing-group-label{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);font-weight:600;margin:0 0 0.6rem;}
+
+@media(max-width:900px){
+  .pricing-overview,.speaking-audiences{grid-template-columns:1fr;}
+}
+@media(min-width:901px) and (max-width:1200px){
+  .speaking-audiences{grid-template-columns:repeat(2,1fr);}
+}
+.blog-recent{margin-top:1.5rem;padding:1.4rem 1.8rem;border:1px solid rgba(255,255,255,0.1);border-radius:20px;background:rgba(255,255,255,0.03);}
+.blog-recent-item{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.08);text-decoration:none;}
+.blog-recent-item:last-child{border-bottom:none;padding-bottom:0;}
+.blog-recent-title{font-size:0.9rem;color:rgba(255,255,255,0.85);line-height:1.5;}
+.blog-recent-item:hover .blog-recent-title{color:var(--green-light);}
+.blog-recent-date{font-size:0.75rem;color:rgba(255,255,255,0.4);white-space:nowrap;font-weight:300;}
