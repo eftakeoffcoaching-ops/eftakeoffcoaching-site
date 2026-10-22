@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pricing | EF TakeOff Coaching</title>
+<title>Pricing | EF TakeOff Coaching &amp; Counseling</title>
 <link rel="canonical" href="https://eftakeoffcoachingcg.com/pricing">
-<meta name="description" content="Transparent pricing for coaching and counseling in Shenzhen. Adults, teens, university students, and counseling clients. No surprises.">
+<meta name="description" content="Clear pricing for mental health counseling and executive function coaching in Shenzhen and online. Counseling for adults, coaching for adults, university students, and teens.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -13,19 +13,19 @@
 <body>
 
 <nav>
-  <a href="/" class="nav-logo"><img src="logo.png" alt="EF TakeOff Coaching"></a>
+  <a href="/" class="nav-logo"><img src="logo.png" alt="EF TakeOff Coaching &amp; Counseling"></a>
   <button class="hamburger" id="hamburger" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links" id="nav-links">
-    <li><a href="/services">Coaching</a></li>
     <li><a href="/counseling">Counseling</a></li>
+    <li><a href="/services">Coaching</a></li>
     <li><a href="/pricing" class="active-page">Pricing</a></li>
     <li><a href="/about">About</a></li>
+    <li><a href="/speaking">Speaking</a></li>
     <li><a href="/resources">Free Resources</a></li>
-      <li><a href="/shop">Shop</a></li>
     <li><a href="/blog">Blog</a></li>
-    <li><a href="/schools">Schools</a></li>
+    <li><a href="/shop">Shop</a></li>
     <li><a href="/faq">FAQ</a></li>
     <li><a href="/#contact" class="nav-cta">Free Consultation</a></li>
   </ul>
@@ -34,10 +34,26 @@
 <div class="page-header">
   <div class="page-header-label">Pricing</div>
   <h1>Transparent pricing, <em>no surprises.</em></h1>
-  <p>Every engagement starts with a free consultation. From there, choose the level of support that fits your situation.</p>
+  <p>Counseling and coaching are priced separately because they work differently. Every engagement starts with a free consultation, and we can figure out together which one fits.</p>
 </div>
 
 <section id="pricing">
+<div class="pricing-overview">
+<div class="overview-card is-counseling">
+<div class="overview-label">Mental Health Counseling</div>
+<h2>Counseling for adults</h2>
+<div class="overview-price"><span class="curr-val" data-cny="800" data-usd="115" data-hkd="925" data-eur="105">&yen;800</span> <small>per 50-minute session</small></div>
+<p>Pay per session, with no package or minimum commitment. For anxiety, low mood, perfectionism, burnout, and life transitions.</p>
+<button class="overview-link" onclick="jumpToPanel('counseling')">See counseling details &darr;</button>
+</div>
+<div class="overview-card">
+<div class="overview-label">Executive Function &amp; ADHD Coaching</div>
+<h2>Coaching for adults, students &amp; teens</h2>
+<div class="overview-price"><small>from</small> <span class="curr-val" data-cny="800" data-usd="115" data-hkd="925" data-eur="105">&yen;800</span> <small>per session or package</small></div>
+<p>Single strategy sessions, monthly coaching, and structured programs for building the systems and skills that keep life running.</p>
+<button class="overview-link" onclick="jumpToPanel('adults')">See coaching options &darr;</button>
+</div>
+</div>
 <div class="pricing-tabs" id="currency-tabs">
 <button class="pricing-tab currency-tab active" onclick="setCurrency('cny',this)">RMB &yen;</button>
 <button class="pricing-tab currency-tab" onclick="setCurrency('usd',this)">USD $</button>
@@ -45,12 +61,12 @@
 <button class="pricing-tab currency-tab" onclick="setCurrency('eur',this)">EUR &euro;</button>
 </div>
 <p style="font-size:0.75rem;color:var(--mid);margin-top:-1rem;margin-bottom:1.5rem;">Billed in RMB. Other currencies are approximate.</p>
-<div class="pricing-tabs">
-<button class="pricing-tab active" onclick="showPricing('adults',this)">Adults</button>
-<button class="pricing-tab" onclick="showPricing('students',this)">Teens &amp; Students</button>
-<button class="pricing-tab tab-counseling" onclick="showPricing('counseling',this)">Counseling</button>
+<div class="pricing-tabs" id="service-tabs">
+<button class="pricing-tab service-tab tab-counseling active" data-panel="counseling" onclick="showPricing('counseling',this)">Counseling</button>
+<button class="pricing-tab service-tab" data-panel="adults" onclick="showPricing('adults',this)">Coaching: Adults</button>
+<button class="pricing-tab service-tab" data-panel="students" onclick="showPricing('students',this)">Coaching: Teens &amp; Students</button>
 </div>
-<div class="pricing-panel active" id="panel-adults">
+<div class="pricing-panel" id="panel-adults">
 <div class="pricing-grid">
 <div class="price-cards">
 <div class="price-card">
@@ -69,7 +85,7 @@
 <div><div class="price-card-figure curr-val" data-cny="3000" data-usd="445" data-hkd="3475" data-eur="390">&yen;3,000</div><span class="price-card-period">per month</span></div>
 </div>
 <div class="price-card-sub">4 sessions/month &middot; 60 min each &middot; flexible duration</div>
-<div class="price-card-desc">For people who are done managing symptoms and ready to build actual systems. Weekly sessions plus personalized tools mean you're not starting from scratch every week, the structure compounds.</div>
+<div class="price-card-desc">For people who are done managing symptoms and ready to build systems that hold. Weekly sessions plus personalized tools mean you aren't starting from scratch every week. The structure builds on itself.</div>
 <div class="price-card-includes">
 <div class="price-card-include">4 x 60-minute coaching sessions</div>
 <div class="price-card-include">Mid-week accountability check-ins via WeChat</div>
@@ -86,7 +102,7 @@
 <div class="price-card-sub">1 session/week &middot; 10-week program</div>
 <div class="price-card-desc">A defined 10-week program. Weekly sessions give the skills enough frequency to develop rather than stall between contacts.</div>
 <div class="price-card-includes">
-<div class="price-card-include">4 x 60-minute coaching sessions per month</div>
+<div class="price-card-include">10 weekly 60-minute coaching sessions</div>
 <div class="price-card-include">Mid-week accountability check-ins via WeChat</div>
 <div class="price-card-include">Post-session notes with clear action steps</div>
 <div class="price-card-include">Personalized tools, trackers, and planning systems</div>
@@ -98,7 +114,7 @@
 <h4>What we work on</h4>
 <div class="hiw-step"><div class="hiw-num">&rarr;</div><div class="hiw-content"><h5>EF Strategies</h5><p>Task initiation, planning, time awareness, follow-through</p></div></div>
 <div class="hiw-step"><div class="hiw-num">&rarr;</div><div class="hiw-content"><h5>Emotional Regulation</h5><p>Managing overwhelm, avoidance, and stress responses</p></div></div>
-<div class="hiw-step"><div class="hiw-num">&rarr;</div><div class="hiw-content"><h5>Accountability Systems</h5><p>Built for how your brain is actually wired</p></div></div>
+<div class="hiw-step"><div class="hiw-num">&rarr;</div><div class="hiw-content"><h5>Accountability Systems</h5><p>Built for how your brain is wired</p></div></div>
 <div class="hiw-step"><div class="hiw-num">&rarr;</div><div class="hiw-content"><h5>Expat Context</h5><p>Understanding the cognitive load of life abroad</p></div></div>
 <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--light-border);">
 <a href="/#contact" class="btn-primary" style="width:100%;justify-content:center;">Book Your Free 30-Min Call &rarr;</a>
@@ -116,7 +132,7 @@
 <div><div class="price-card-figure curr-val" data-cny="3000" data-usd="445" data-hkd="3475" data-eur="390">&yen;3,000</div><span class="price-card-period">total &middot; one-time</span></div>
 </div>
 <div class="price-card-sub">4 sessions &middot; 45 min each</div>
-<div class="price-card-desc">For families wanting a contained starting point. Focused on trust-building and early skill stabilisation.</div>
+<div class="price-card-desc">For families wanting a contained starting point. Focused on trust-building and early skill stabilization.</div>
 </div>
 <div class="price-card recommended">
 <div class="price-card-badge badge-recommended">Recommended</div>
@@ -144,7 +160,7 @@
 </div>
 </div>
 </div>
-<div class="pricing-panel" id="panel-counseling">
+<div class="pricing-panel active" id="panel-counseling">
 <div class="pricing-grid">
 <div class="price-cards">
 <div class="price-card">
@@ -153,14 +169,14 @@
 <div class="price-card-name">Counseling Session</div>
 <div><div class="price-card-figure curr-val" data-cny="800" data-usd="115" data-hkd="925" data-eur="105">&yen;800</div><span class="price-card-period">per session</span></div>
 </div>
-<div class="price-card-sub">50 minutes &middot; telehealth or in-person &middot; Shenzhen</div>
+<div class="price-card-sub">50 minutes &middot; adults &middot; online or in person in Shenzhen</div>
 <div class="price-card-desc">One-on-one time to work through what's underneath, at whatever pace that takes. No fixed number of sessions, no pressure to have it figured out.</div>
 </div>
 </div>
 <div class="how-it-works">
 <h4>How it works</h4>
 <div class="hiw-step"><div class="hiw-num">1</div><div class="hiw-content"><h5>Free consultation</h5><p>20-30 minutes. We talk through what's going on and figure out if this is a fit.</p></div><div class="hiw-price">Free</div></div>
-<div class="hiw-step"><div class="hiw-num">2</div><div class="hiw-content"><h5>Ongoing sessions</h5><p>Weekly or biweekly, 50 minutes each, by telehealth or in person in Shenzhen.</p></div><div class="hiw-price curr-val" data-cny="800" data-usd="115" data-hkd="925" data-eur="105">&yen;800</div></div>
+<div class="hiw-step"><div class="hiw-num">2</div><div class="hiw-content"><h5>Ongoing sessions</h5><p>Weekly or every other week, 50 minutes each, online or in person in Shenzhen.</p></div><div class="hiw-price curr-val" data-cny="800" data-usd="115" data-hkd="925" data-eur="105">&yen;800</div></div>
 <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--light-border);">
 <a href="/#contact" class="btn-primary" style="width:100%;justify-content:center;">Book a free consultation &rarr;</a>
 </div>
@@ -176,11 +192,11 @@
 
 <footer>
   <div>
-    <img src="logo.png" alt="EF TakeOff Coaching" style="height:60px;width:auto;display:block;margin-bottom:0.5rem;">
-    <div class="footer-sub">Shenzhen, China &middot; EF TakeOff Coaching</div>
+    <img src="logo.png" alt="EF TakeOff Coaching &amp; Counseling" style="height:60px;width:auto;display:block;margin-bottom:0.5rem;">
+    <div class="footer-sub">Shenzhen, China &middot; EF TakeOff Coaching &amp; Counseling</div>
   </div>
   <div class="footer-right">
-    <div>&copy; 2025 EF TakeOff Coaching</div>
+    <div>&copy; 2026 EF TakeOff Coaching &amp; Counseling</div>
     <div style="margin-top:0.3rem;">WeChat: CourtGum &middot; eftakeoffcoaching@gmail.com</div>
     <div style="margin-top:0.3rem;">
       <a href="https://courtneygumson.substack.com/" target="_blank">Substack &rarr;</a>
@@ -209,9 +225,13 @@
 function toggleWechat() { document.getElementById('wechatPopup').classList.toggle('open'); }
 function showPricing(tab,btn){
   document.querySelectorAll('.pricing-panel').forEach(function(p){p.classList.remove('active');});
-  document.querySelectorAll('.pricing-tab').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.service-tab').forEach(function(t){t.classList.remove('active');});
   document.getElementById('panel-'+tab).classList.add('active');
-  btn.classList.add('active');
+  (btn || document.querySelector('.service-tab[data-panel="'+tab+'"]')).classList.add('active');
+}
+function jumpToPanel(tab){
+  showPricing(tab);
+  document.getElementById('service-tabs').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function setCurrency(cur,btn){
 document.querySelectorAll('.currency-tab').forEach(function(t){t.classList.remove('active');});
