@@ -476,3 +476,6 @@ footer{background:var(--charcoal);padding:2.5rem 5%;display:flex;justify-content
 .blog-recent-title{font-size:0.9rem;color:rgba(255,255,255,0.85);line-height:1.5;}
 .blog-recent-item:hover .blog-recent-title{color:var(--green-light);}
 .blog-recent-date{font-size:0.75rem;color:rgba(255,255,255,0.4);white-space:nowrap;font-weight:300;}
+.shop-status{display:inline-block;align-self:flex-start;font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--teal-dark);background:rgba(59,109,138,0.08);border:1px solid var(--light-border);border-radius:50px;padding:0.3rem 0.9rem;margin-bottom:1rem;}
+.shop-coming{border-style:dashed;}
+.shop-coming p a{color:var(--teal);}
